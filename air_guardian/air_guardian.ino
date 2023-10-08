@@ -1,3 +1,7 @@
+//add to File-Preferences..-Additional Manager Boards URL:
+//https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json
+
+//add library from zip dowloaded on: https://github.com/Seeed-Studio/SGP30_Gas_Sensor
 #include <i2c.h>
 #include <sensirion_common.h>
 #include <sensirion_configuration.h>
@@ -73,7 +77,7 @@ void setup() {
     pinMode(WIO_5S_DOWN, INPUT_PULLUP);
     pinMode(WIO_5S_LEFT, INPUT_PULLUP);
     pinMode(WIO_5S_RIGHT, INPUT_PULLUP);
-    pinMode(WIO_5S_PRESS, INPUT_PULLUP);}
+    pinMode(WIO_5S_PRESS, INPUT_PULLUP);
     //Pins for motor driver L298N
     pinMode(BCM13, OUTPUT); //PIN33 to L298N:IN4   MOTOR2 A1
     pinMode(BCM16, OUTPUT); //PIN36 to L298N:IN3   MOTOR2 A2
@@ -108,8 +112,15 @@ void loop() {
   
       
       if(g_activated == 1){
-        myGLCD.fillScreen(TFT_RED);        
+        myGLCD.fillRoundRect(1, 1, 320, 34, 3, TFT_RED);
+        myGLCD.fillRoundRect(1, 116, 320, 10, 3, TFT_RED);
+        myGLCD.fillRoundRect(1, 206, 320, 34, 3, TFT_RED);
+      }else{
+        myGLCD.fillRoundRect(1, 1, 320, 34, 3, TFT_GREEN);
+        myGLCD.fillRoundRect(1, 116, 320, 10, 3, TFT_GREEN);
+        myGLCD.fillRoundRect(1, 206, 320, 34, 3, TFT_GREEN);
       }
+        
       myGLCD.fillRoundRect(1, 35, 320, 80, 3, TFT_BLUE);
       myGLCD.fillRoundRect(1, 125, 320, 80, 3, TFT_BLUE);
       myGLCD.setFreeFont(FS12);
@@ -148,7 +159,7 @@ void loop() {
     digitalWrite(BCM16, 0);
     delay(200);
     digitalWrite(BCM20, 0);
-    myGLCD.fillScreen(TFT_WHITE);        
+    //myGLCD.fillScreen(TFT_WHITE);        
    }
 
   delay(200);
